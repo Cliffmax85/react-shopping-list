@@ -55,8 +55,8 @@ export default function App() {
               {/* if there's a user, take them to the list page. Otherwise, redirect them to the home/auth page */}
               {
                 currentUser 
-                ?<ListPage /> 
-                : <AuthPage />
+                  ? <ListPage /> 
+                  : <AuthPage />
               }
             </Route>
           </Switch>
