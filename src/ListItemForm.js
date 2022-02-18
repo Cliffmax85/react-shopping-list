@@ -17,6 +17,7 @@ export default function ListItemForm({ fetchItems }) {
     };
     // refetch the items using the handler functionpassed down as a prop
     await createListItem(newListItem);
+    await fetchItems();
     // clear the name and quantity in state to refresh the form
     setName('');
     setQuantity(0);
@@ -25,14 +26,16 @@ export default function ListItemForm({ fetchItems }) {
   return (
     <div className='new-item-form-container'>
       {/* on submit, call the handleSubmit function */}
-      <form>
+      <form onSubmit={handleSubmit}>
           I need . . . 
         <label>
             Quantity
           {/* on change, update the quantity in state */}
-          <input 
+          <input onChange={(e) => setQuantity(e.target.value)}
+          
             // this should be a controlled input, soi set the value based on state
             required 
+            value={quantity}
             type="number" 
             name="quantity"
           />
@@ -40,10 +43,12 @@ export default function ListItemForm({ fetchItems }) {
         <label>
             Name
           {/* on change, update the name in state */}
-          <input
+          <input onChange={(e) => setName(e.target.value)}
             // this should be a controlled input, soi set the value based on state 
             required 
-            name="name" />
+            name="name"
+            value={name} 
+          />
         </label>
         <button>Add item</button>
       </form>
